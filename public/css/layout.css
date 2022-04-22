@@ -1,0 +1,27 @@
+body {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+#signup{
+    width:40rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 36rem;
+
+}
+
+#signup{
+    border: 1px solid black;
+    padding: 3rem;
+    overflow: hidden;
+    border-radius: 0.4rem;
+    box-shadow: 0 0 20px ;
+}
+
+.login{
+    margin-top:5rem;
+    margin-left: 2rem;
+}
