@@ -2,6 +2,7 @@ body {
     padding-top: 100px;
     display: flex;
     justify-content: center;
+    
 }
 
 #signup{
@@ -24,4 +25,16 @@ body {
 .login{
     margin-top:5rem;
     margin-left: 2rem;
+}
+
+i{
+    color:orange;
+}
+
+header{
+    margin-left: 90rem;
+}
+
+#navbardata{
+    padding: 20px;
 }
