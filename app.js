@@ -37,6 +37,7 @@ app.use(express.static('public'));
 const {dbconnection} = require('./db.js');
 dbconnection();
 
+
 //import user related router
 const userrouter = require('./routes/user')
 
