@@ -62,7 +62,7 @@ router.get('/profile',authUser,async(req,res)=>{
     res.render('accounts/profile',{profile:profile})
     
 })
-
+// logout user
 router.get('/logout',authUser,async(req,res)=>{
     req.session.destroy()
     console.log('you are logged out')
