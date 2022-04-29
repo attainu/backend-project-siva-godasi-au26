@@ -38,3 +38,43 @@ header{
 #navbardata{
     padding: 20px;
 }
+
+#profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 44rem;
+    margin-top: 5rem;
+}
+
+#edit{
+    height: 3rem;
+    padding:0.2rem;
+    font-size: 1.5rem;
+    width:10rem;
+    margin-left: 6rem;
+    text-align: center;
+    padding-top: 0.5rem;
+}
+
+#imageicon{
+    font-size: 10rem;
+    color:grey;
+    margin-left: 4rem;
+
+}
+
+#editprofile{
+    margin-top: -5rem;
+    margin-left:32rem;
+    width:50rem
+}
+
+#picture{
+    margin-bottom: 1rem;
+}
+
+#editbutton{
+    width:15rem;
+    margin-left: 15rem;
+}

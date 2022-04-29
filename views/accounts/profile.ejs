@@ -25,5 +25,37 @@
         </div>
     </nav>
 
-    hello <%= profile.profile.name %>
+    <div class="row">
+        <div id="profile" class="col-sm-6 col-md-4">
+        
+            <% if(profile.profile.picture){ %>
+                <img class="img-circle img-responsive img-center" src="<%= profile.profile.picture %>" alt="">
+            <% }else{ %>
+                <i id="imageicon" class="bi bi-image"></i>
+            <% } %>
+
+          <br />
+          <p>Name: <%= profile.profile.name %></p>
+          <p>Email: <%= profile.email %></p>
+    
+          <% if (profile.address === "" || typeof profile.address === 'undefined')  { %>
+            <p>Address: <span style="color: #c0392b; font-weight: bold">You have no address</span></p>
+    
+          <% } else { %>
+    
+          <p>Address: <%= profile.address %></p>
+    
+          <% } %>
+
+          <% if (profile.phonenumber === null)  { %>
+            <p>Phone Number: <span style="color: #c0392b; font-weight: bold">You have no phonenumber</span></p>
+    
+          <% } else { %>
+    
+          <p>Phone Number: <%= profile.phonenumber %></p>
+    
+          <% } %>
+    
+          <a href="/editprofile" id="edit" class="btn btn-primary btn-lg">Edit Profile</a>
+        </div>
 </div>
