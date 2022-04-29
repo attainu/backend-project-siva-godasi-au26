@@ -19,7 +19,14 @@ const userSchema = new mongoose.Schema({
             default:''
         }
     },
-    address:String,
+    address:{
+        type:String,
+        default:''
+    },
+    phonenumber:{
+        type:Number,
+        default:''
+    },
     histoty:[{ 
         date:Date,
         paid:{
