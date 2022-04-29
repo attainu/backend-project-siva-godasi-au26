@@ -86,19 +86,35 @@ router.get('/editprofile',authUser,async(req,res)=>{
     res.render('accounts/editprofile',{editprofile:editprofile})
 })
 
-router.put('/editprofile',upload.single('picture'),authUser,async(req,res)=>{
+router.post('/editprofile',upload.single('picture'),authUser,async(req,res)=>{
    try{
-        const {email} = req.query
-        console.log(editdata)
-        console.log(req.body)
-        // console.log(req.body.name)
-        // console.log(req.body.email)
-        // console.log(req.body.address)
-        // console.log(req.body.phonenumber)
-        // editdata.profile.name = req.body.name
-        // editdata.profile.email = req.body.email
-        // editdata.profile.address = req.body.address
-        // editdata.profile.phonenumber = req.body.phonenumer
+        if(req.session.emailID){
+            userModel.findOne({email:req.session.emailID},async(err,user)=>{
+                const file = req.file
+                if(file){
+                    const encodeddata = Base64.encode(file.buffer)
+                    await cloudinary.uploader.upload(`data:${file.mimetype};base64,${encodeddata}`,function(error,result){
+                        user.profile.picture = result.secure_url
+                        console.log(user) 
+                    })
+                }
+                if (user!=null){
+                    user.profile.name = req.body.name;
+                    req.body.email = req.body.email.toLowerCase();
+                    user.email = req.body.email;
+                    user.address = req.body.address;
+                    user.phonenumber = req.body.phonenumber;
+                    user.save(function(err,user){
+                        console.log(user)
+                        req.session.email = req.body.email
+                        res.redirect('/profile')
+                    })
+                }else{
+                    res.send('email id should be unique')
+                }
+            })
+        }
+        
         // const filedata = req.file
         // const encodeddata = Base64.encode(filedata.buffer)
         // if(filedata){
@@ -108,12 +124,12 @@ router.put('/editprofile',upload.single('picture'),authUser,async(req,res)=>{
         //         // console.log(studentdata)
         //     }); 
         // }
-        const editprofile = await userModel.findByIdAndUpdate
-        res.redirect('/profile')
+       
+
+        // })
+        // res.redirect('/profile')
    }catch(err){
-       res.json({
-           errObj:err
-       })
+        console.log(err)
    } 
 })
 
