@@ -44,7 +44,7 @@ header{
     flex-direction: column;
     justify-content: center;
     margin-left: 44rem;
-    margin-top: 5rem;
+    font-size: 2rem;
 }
 
 #edit{
@@ -72,9 +72,16 @@ header{
 
 #picture{
     margin-bottom: 1rem;
+    height:2rem;
 }
 
 #editbutton{
     width:15rem;
     margin-left: 15rem;
+}
+
+#profileimg{
+    height: 20rem;
+    width: 20rem;
+    margin: 0;
 }
