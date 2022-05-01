@@ -40,9 +40,12 @@ dbconnection();
 
 //import user related router
 const userrouter = require('./routes/user')
-
+const categoryrouter = require('./routes/admin/category')
+const productrouter = require('./routes/admin/product')
 
 app.use('/',userrouter)
+app.use('/',categoryrouter)
+app.use('/',productrouter)
 
 app.listen(3000,()=>{
     console.log('sever is start running')

@@ -26,18 +26,7 @@ const userSchema = new mongoose.Schema({
     phonenumber:{
         type:Number,
         default:''
-    },
-    histoty:[{ 
-        date:Date,
-        paid:{
-            type:Number,
-            default:0
-        },
-        // item:{
-        //     type:mongoose.Schema.Types.ObjectId,
-        //     ref:''
-        // }
-    }]
+    }
 })
 
 //by using bcrypt to hash the password before saving into datase
