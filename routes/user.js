@@ -77,11 +77,11 @@ router.get('/profile',authUser,async(req,res)=>{
     // console.log(profile.phonenumber)
     // console.log(profile)
     // console.log(req.session.emailID)
-    const total=0
+    let total=0
     if(req.session.emailID){
         const user = await userModel.findOne({email:req.session.emailID})
-        // console.log(req.session.emailID)
-        // console.log(user)
+        console.log(req.session.emailID)
+        console.log(user)
         const cart = await cartModel.findOne({owner:user._id})
         console.log(cart)
         if(cart){

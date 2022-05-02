@@ -1,0 +1,66 @@
+<% - layout('layout') %>
+
+<div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="/">Flash Zone</a>
+          </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <header>
+                <div>
+                  <a class="navbar-brand" href="/">categories</a>
+                </div>
+                <div>
+                  <a class="navbar-brand" href="#"><%= user.profile.name %></a>
+                </div>
+                <div>
+                  <a class="navbar-brand" href="/logout">Logout</a>
+                </div>
+                <div>
+                    <a class="navbar-brand" href="/profile">Profile</a>
+                  </div>
+                <div>
+                  <a class="navbar-brand" href="/cart"><i class="bi bi-cart-fill"></i><span><%= total %></span></a>
+                </div>
+              </header>  
+          </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-lg-6">
+            <% for (var i = 0; i < cart.items.length; i++) { %>
+                <div class="list-group">
+                  <span class="list-group-item">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <span><img class="product-image" src="<%= cart.items[i].item.image %>"></span>
+                      </div>
+      
+                      <div class="col-md-6">
+                        <p class="list-group-item-heading"><%= cart.items[i].item.name %></p>
+                      </div>
+                      <div class="col-md-3">
+                        <p><%= cart.items[i].quantity %></p>
+                        <p><%= cart.items[i].price %></p>
+                        <form method="post" action="/remove">
+                            <input type="hidden" name="item" value="<%= cart.items[i]._id %>">
+                            <input type="hidden" name="price" value="<%= cart.items[i].price %>">
+                            <button type="submit" class="btn btn-warning" type="button">Remove</button>
+                        </form>
+                      </div>
+                    </div>
+                    </span>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="col-md-6" style="font-size:5rem">
+            <p style="margin-left:10rem;margin-top:10rem">Totalcost</p>
+            <p style="margin-left:16rem"><%= cart.total %></p>
+          </div>
+    </div>
+</div>
