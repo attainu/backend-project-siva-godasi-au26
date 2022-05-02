@@ -46,7 +46,7 @@
             <h1>$<%= bike.price %></h1>
       
           </div>
-          <form method="post">
+          <form method="post" action="/addtocart">
             <div class="btn-group" style="margin-left:40rem" role="group" aria-label="...">
               <input type="hidden" name="quantity" id="quantity" value="1"></input>
               <button type="button" id="minus" class="btn btn-default">-</button>
@@ -61,7 +61,11 @@
               <input type="text" style="margin-top:1rem;margin-bottom:1rem" name="item" class="form-control" value="<%= bike.name %>"></input>
               <input type="text" name="priceValue" id="priceValue" class="form-control" value="<%= bike.price %>"></input>
             </div>
-            <button type="submit" style="margin-left:76rem;margin-top:-12rem" class="btn btn-primary btn-lg">Add to Cart</button>
+            <% if(user){ %>
+              <button type="submit" style="margin-left:76rem;margin-top:-12rem" class="btn btn-primary btn-lg">Add to Cart</button>
+            <% }else{ %>
+              <a href='/login' style="margin-left:76rem;margin-top:-12rem" class="btn btn-warning btn-lg">login to begin buying!</a>
+              <% } %>
           </form>
         </div>
     </div>
