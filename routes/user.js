@@ -68,8 +68,24 @@ router.post('/login',async(req,res)=>{
 })
 
 router.get('/',async(req,res)=>{
-    // const category = await categoryModel.find({})
-    res.render('accounts/home')
+    try{
+        let total=0
+        if(req.session.emailID){
+            const user = await userModel.findOne({email:req.session.emailID})
+            console.log(req.session.emailID)
+            console.log(user)
+            const cart = await cartModel.findOne({owner:user._id})
+            console.log(cart)
+            if(cart){
+                for(var i=0;i<cart.items.length;i++){
+                    total += cart.items[i].quantity
+                }
+            }
+            res.render('accounts/home',{user:user,total:total})
+        }
+    }catch(err){
+        console.log(err)
+    }
 })
 
 router.get('/profile',authUser,async(req,res)=>{
