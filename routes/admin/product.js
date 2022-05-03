@@ -41,9 +41,23 @@ router.post('/addproduct',upload.single('image'),async(req,res)=>{
 //find all the cars renderpage
 router.get('/cars',async(req,res)=>{
     try{
+        const user= await userModel.findOne({email:req.session.emailID})
+        let total=0
+        if(req.session.emailID){
+            const user = await userModel.findOne({email:req.session.emailID})
+            console.log(req.session.emailID)
+            console.log(user)
+            const cart = await cartModel.findOne({owner:user._id})
+            console.log(cart)
+            if(cart){
+                for(var i=0;i<cart.items.length;i++){
+                    total += cart.items[i].quantity
+                }
+            }
+        }
         const cars = await productModel.find({category:'626bec384041753792857287'})
         // console.log(cars)
-        res.render('accounts/cars',{cars:cars})
+        res.render('accounts/cars',{cars:cars,user:user,total:total})
     }catch(err){
         console.log(err)
     }
@@ -52,8 +66,22 @@ router.get('/cars',async(req,res)=>{
 //find all the bikes
 router.get('/bikes',async(req,res)=>{
     try{
+        const user= await userModel.findOne({email:req.session.emailID})
+        let total=0
+        if(req.session.emailID){
+            const user = await userModel.findOne({email:req.session.emailID})
+            console.log(req.session.emailID)
+            console.log(user)
+            const cart = await cartModel.findOne({owner:user._id})
+            console.log(cart)
+            if(cart){
+                for(var i=0;i<cart.items.length;i++){
+                    total += cart.items[i].quantity
+                }
+            }
+        }
         const bikes = await productModel.find({category:'626becaa80ba5cb40c04dbbb'})
-        res.render('accounts/bikes',{bikes:bikes})
+        res.render('accounts/bikes',{bikes:bikes,user:user,total:total})
     }catch(err){
         console.log(err)
     }
@@ -61,11 +89,24 @@ router.get('/bikes',async(req,res)=>{
 
 router.get('/bikes/:id',async(req,res)=>{
     try{
+        let total=0
+        if(req.session.emailID){
+            const user = await userModel.findOne({email:req.session.emailID})
+            console.log(req.session.emailID)
+            console.log(user)
+            const cart = await cartModel.findOne({owner:user._id})
+            console.log(cart)
+            if(cart){
+                for(var i=0;i<cart.items.length;i++){
+                    total += cart.items[i].quantity
+                }
+            }
+        }
         const user = await userModel.findOne({email:req.session.emailID})
         // console.log(user)
         const{id} = req.params
         const bike = await productModel.findById(id)
-        res.render('accounts/bike',{bike:bike,user:user})
+        res.render('accounts/bike',{bike:bike,user:user,total:total})
     }catch(err){
         console.log(err)
     }
@@ -73,6 +114,19 @@ router.get('/bikes/:id',async(req,res)=>{
 
 router.get('/cars/:id',async(req,res)=>{
     try{
+        let total=0
+        if(req.session.emailID){
+            const user = await userModel.findOne({email:req.session.emailID})
+            console.log(req.session.emailID)
+            console.log(user)
+            const cart = await cartModel.findOne({owner:user._id})
+            console.log(cart)
+            if(cart){
+                for(var i=0;i<cart.items.length;i++){
+                    total += cart.items[i].quantity
+                }
+            }
+        }
         console.log(req.session.emailID)
         const user = await userModel.findOne({email:req.session.emailID})
         // console.log(user)
@@ -83,7 +137,7 @@ router.get('/cars/:id',async(req,res)=>{
             console.log('user not found')
         }
         const car = await productModel.findById(id)
-        res.render('accounts/car',{car:car,user:user})
+        res.render('accounts/car',{car:car,user:user,total:total})
     }catch(err){
         console.log(err)
     }

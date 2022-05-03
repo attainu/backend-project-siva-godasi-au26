@@ -69,6 +69,7 @@ router.post('/login',async(req,res)=>{
 
 router.get('/',async(req,res)=>{
     try{
+        const user= await userModel.findOne({email:req.session.emailID})
         let total=0
         if(req.session.emailID){
             const user = await userModel.findOne({email:req.session.emailID})
@@ -81,8 +82,9 @@ router.get('/',async(req,res)=>{
                     total += cart.items[i].quantity
                 }
             }
-            res.render('accounts/home',{user:user,total:total})
+            
         }
+        res.render('accounts/home',{user:user,total:total})
     }catch(err){
         console.log(err)
     }
