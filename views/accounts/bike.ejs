@@ -2,6 +2,36 @@
 
 <div class="container">
 
+  <% if(user){%>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+          </button>
+          <a class="navbar-brand" href="/">Flash Zone</a>
+        </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <header>
+              <div>
+                <a style="margin-left:70rem" class="navbar-brand" href="#"><%= user.profile.name %></a>
+              </div>
+              <div>
+                <a class="navbar-brand" href="/profile">Profile</a>
+              </div>
+              <div>
+                <a class="navbar-brand" href="/logout">Logout</a>
+              </div>
+              <div>
+                <a class="navbar-brand" href="/cart"><i class="bi bi-cart-fill"></i><span><%= total %></span></a>
+              </div>
+            </header>
+
+        </div>
+      </div>
+    </nav>
+   
+  <% }else{ %>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
@@ -13,9 +43,6 @@
             <div id="navbar" class="navbar-collapse collapse">
               <header>
                 <div>
-                  <a class="navbar-brand" href="/">categories</a>
-                </div>
-                <div>
                   <a class="navbar-brand" href="/signup">Signup</a>
                 </div>
                 <div>
@@ -24,10 +51,12 @@
                 <div>
                   <a class="navbar-brand" href="#"><i class="bi bi-cart-fill"></i></a>
                 </div>
-              </header>  
+              </header>
+
           </div>
         </div>
     </nav>
+  <% } %>
     
     <div class="container">
         <div  class="row">
@@ -62,10 +91,12 @@
               <input type="text" name="priceValue" id="priceValue" class="form-control" value="<%= bike.price %>"></input>
             </div>
             <% if(user){ %>
-              <button type="submit" style="margin-left:76rem;margin-top:-12rem" class="btn btn-primary btn-lg">Add to Cart</button>
+              <button type="submit" style="margin-left:76rem;margin-top:-12.2rem" class="btn btn-primary btn-lg">Add to Cart</button>
             <% }else{ %>
-              <a href='/login' style="margin-left:76rem;margin-top:-12rem" class="btn btn-warning btn-lg">login to begin buying!</a>
+              <a href='/login' style="margin-left:72.5rem;margin-top:-12.2rem" class="btn btn-warning btn-lg">login to begin buying!</a>
               <% } %>
           </form>
         </div>
     </div>
+</div>
+<script src="../../js/cart.js"></script>
